@@ -6,4 +6,4 @@
 
 Beginning sketch of main page and subsequent coordinated multi-view pages, each with main question and demographic data to overlay on top of map. Includes notes on color scheme, possible icons, and thoughts on quantifying responses.
 
-![Sketch](https://github.com/cshookabaricia/empreparepercepvis/blob/master/img/interfacesketch.pdf)
+![Sketch](empreparepercepvis/img/interfacesketch.pdf)
