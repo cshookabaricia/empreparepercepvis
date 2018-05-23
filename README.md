@@ -20,14 +20,16 @@ Organized by [Coolors](https://coolors.co/eeeeee-ff7100-be3030-222222-0f130d).
 |#BE3030|
 |#222222|
 
-![Palette](empreparepercepvis/img/colorpalette.png)
+<br>
+<img src="img/colorpalette.png" alt="Color Palette" width="600" height="300")
+</br>
+
 _________
 
 
 2. Fonts
 
-Curtesy of [Good Fonts - Montserrat](https://fonts.google.com/?query=monte&selection.family=Montserrat)
-
+Curtesy of [Google Fonts - Montserrat](https://fonts.google.com/?query=monte&selection.family=Montserrat)
 
 ```
  <!DOCTYPE html>
@@ -49,24 +51,39 @@ Curtesy of [Good Fonts - Montserrat](https://fonts.google.com/?query=monte&selec
   <p>abcdefghijklmnopqrstuvwxyz</p>
   </body>
   </html>
- ```
+```
 _________
 
 3. Web Icons
 
-Home: <img src="empreparepercepvis/assets/flaticoncollection/svgicons/001-home.svg">
+Home: 
+
+<img src="assets/flaticoncollection/svgicons/001-home.svg" alt="Home Icon" width="80" height="80">
+
 Icon made by Freepik from www.flaticon.com
 
-Search: <img src="empreparepercepvis/assets/flaticoncollection/svgicons/004-graph.svg">
+Search: 
+
+<img src="assets/flaticoncollection/svgicons/004-graph.svg" alt="Search Icon" width="80" height="80">
+
 Icon made by Smashicons from www.flaticon.com
 
-Share: <img src="empreparepercepvis/assets/flaticoncollection/svgicons/003-share.svg">
+Share:
+
+<img src="assets/flaticoncollection/svgicons/003-share.svg" alt="Share Icon" width="80" height="80">
+
 Icon made by Gregor Cresnar from www.flaticon.com
 
-Data: <img src="empreparepercepvis/assets/flaticoncollection/svgicons/002-folder.svg">
+Data: 
+
+<img src="assets/flaticoncollection/svgicons/002-folder.svg" alt="Data Icon" width="80" height="80">
+
 Icon made by Smashicons from www.flaticon.com
 
-Perception: <img src="empreparepercepvis/assets/flaticoncollection/svgicons/006-perception.svg">
+Perception: 
+
+<img src="assets/flaticoncollection/svgicons/006-perception.svg" alt="Perception Icon" width="80" height="80">
+
 Icon made by Eucalyp from www.flaticon.com
 
 
@@ -76,10 +93,10 @@ _________
 
 Possible Images:
 
-<img src="empreparepercepvis/img/cooling-tower-taken.jpg">
+<img src="img/cooling-tower-taken.jpg">
 
 Image Uploaded by Taken at https://pixabay.com/
 
-<img src="empreparepercepvis/img/sand-bags-distel2610.jpg">
+<img src="img/sand-bags-distel2610.jpg">
 
 Image Uploaded by Distel2610 at https://pixabay.com/
