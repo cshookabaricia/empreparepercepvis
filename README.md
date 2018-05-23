@@ -29,8 +29,7 @@ _________
 
 2. Fonts
 
-Curtesy of [Good Fonts - Montserrat](https://fonts.google.com/?query=monte&selection.family=Montserrat)
-
+Curtesy of [Google Fonts - Montserrat](https://fonts.google.com/?query=monte&selection.family=Montserrat)
 
 ```
  <!DOCTYPE html>
@@ -52,7 +51,7 @@ Curtesy of [Good Fonts - Montserrat](https://fonts.google.com/?query=monte&selec
   <p>abcdefghijklmnopqrstuvwxyz</p>
   </body>
   </html>
- ```
+```
 _________
 
 3. Web Icons
