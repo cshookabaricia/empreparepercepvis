@@ -49,7 +49,7 @@
     }).setView([50, -68], 3);
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY3Nob29rYWJhcmljaWEiLCJhIjoiY2pnb2Z1NW1zMDBsdTMzbnZ0Z2dyOTdoMiJ9.MKx_N6iKPgbIuQyWx2qJ3g').addTo(map);
     //add in the .csv file .then() run the functions on that data
-    d3.json('assets/emsurveyresponses.geojson').then(function(data) {
+    d3.json('assets/emsurveyresults.geojson').then(function(data) {
         //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
         //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
         //the .dimensions() method
@@ -65,44 +65,20 @@
         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
         //the chart space and populate the graphs
         //returns the geometry for each feature; this is the points at which each earthquake happened
-        var geomDimension = filter.dimension(function(d) {
+        var gidResults = filter.dimension(function(d) {
             return d.geometry
         });
         //defines the categories from magnitude property
-        var magDimension = filter.dimension(function(d) {
-            var mag = d.properties.mag;
-            magClass = "> 3.1";
-            if (mag <=1.2) {
-                magClass = "1-1.2"
-            } else if ( mag > 1.2 && mag <= 1.5) {
-                magClass = "1.3-1.5"
-            } else if (mag > 1.5 && mag <= 2) {
-                magClass = "1.6-2"
-            } else if (mag > 2 && mag <= 2.5) {
-                magClass = "2.1-2.5"
-            } else if (mag > 2.5 && mag <= 3) {
-                magClass = "2.5-3"
-            } else {
-                magClass = ">3.1"
+        var gidDimension = filter.dimension(function(d) {
+            var gidResults = d.properties.gid;
+            gidClass = "Non-Binary";
+            if (gid = Non-Binary) {
+                gid = "Female"
+            } else if ( gid = Female) {
+                gid = "Male"
+            } else if (gid = Male) {
             }
-            return magClass;
-        });
-        //sorts through the data and finds the depth of each earthquake. Then returns a category based on the depth using the lamda operations
-        var depthDimension = filter.dimension(function(d) {
-            var depth = d.properties.depth;
-            depthClass = ">100";
-            if (depth <5 ) {
-                depthClass = '<5'
-            } else if  (depth >= 5 && depth < 10) {
-                depthClass = "5-9"
-            } else if  (depth >= 10 && depth < 50) {
-                depthClass = "10-49"
-            } else if  (depth >= 50 && depth < 100) {
-                depthClass = "50-99"
-            } else {
-                depthClass = ">100"
-            }
-            return depthClass
+            return gid;
         });
         var dateDimension = filter.dimension(function(d) {
             return d3.timeDay(new Date(d.properties.time));
