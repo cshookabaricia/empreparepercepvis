@@ -57,19 +57,34 @@ _________
 
 3. Web Icons
 
-Home: <img src="assets/flaticoncollection/svgicons/001-home.svg" alt="Home Icon" width="80" height="80">
+Home: 
+
+<img src="assets/flaticoncollection/svgicons/001-home.svg" alt="Home Icon" width="80" height="80">
+
 Icon made by Freepik from www.flaticon.com
 
-Search: <img src="assets/flaticoncollection/svgicons/004-graph.svg" alt="Search Icon" width="80" height="80">
+Search: 
+
+<img src="assets/flaticoncollection/svgicons/004-graph.svg" alt="Search Icon" width="80" height="80">
+
 Icon made by Smashicons from www.flaticon.com
 
-Share: <img src="assets/flaticoncollection/svgicons/003-share.svg" alt="Share Icon" width="80" height="80">
+Share:
+
+<img src="assets/flaticoncollection/svgicons/003-share.svg" alt="Share Icon" width="80" height="80">
+
 Icon made by Gregor Cresnar from www.flaticon.com
 
-Data: <img src="assets/flaticoncollection/svgicons/002-folder.svg" alt="Data Icon" width="80" height="80">
+Data: 
+
+<img src="assets/flaticoncollection/svgicons/002-folder.svg" alt="Data Icon" width="80" height="80">
+
 Icon made by Smashicons from www.flaticon.com
 
-Perception: <img src="assets/flaticoncollection/svgicons/006-perception.svg" alt="Perception Icon" width="80" height="80">
+Perception: 
+
+<img src="assets/flaticoncollection/svgicons/006-perception.svg" alt="Perception Icon" width="80" height="80">
+
 Icon made by Eucalyp from www.flaticon.com
 
 
