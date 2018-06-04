@@ -13,15 +13,19 @@
             margin: 0;
             background: #fff;
         }
-        #mag-chart {
+        #income-chart {
             width: 100%;
             margin: 0 auto;
         }
-        #date-chart {
+        #gid-chart {
             width: 100%;
             margin: 0 auto;
         }
-        #depth-chart {
+        #prepared-chart {
+            width: 100%;
+            margin: 0 auto;
+        }
+        #participated-chart {
             width: 100%;
             margin: 0 auto;
         }
@@ -38,21 +42,26 @@
 </head>
 <body>
 <p class = "dc-data-count">Number of Respondents</p>
-<h4>Count by Gender ID</h4>
-<div id="genderid-chart"></div>
-
+<h3>Demographics</h3>
+<h4>Gender Identity</h4>
+<div id="gid-chart"></div>
+<h4>Age Range</h4>
+<div id="age-chart"></div>
+<h4>Income</h4>
+<div id="income-chart"></div>
+<div id="map"></div>
 <script>
-    //create a map object for us to input the map and it's components into.
+
     var map = L.map('map', {
         zoomControl: false,
         scrollWheelZoom: true
     }).setView([50, -68], 3);
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY3Nob29rYWJhcmljaWEiLCJhIjoiY2pnb2Z1NW1zMDBsdTMzbnZ0Z2dyOTdoMiJ9.MKx_N6iKPgbIuQyWx2qJ3g').addTo(map);
+
     //add in the .csv file .then() run the functions on that data
-    d3.json('assets/emsurveyresults.geojson').then(function(data) {
-        //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
-        //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
-        //the .dimensions() method
+    d3.json('assets/emsurveypicked.geojson').then(function(data) {
+
+
         var filter = crossfilter(data.features); //passes the features to the crossfilter
         // groups everything together into one group, this is used to quickly search all of the data at once
         var all = filter.groupAll();
@@ -64,19 +73,19 @@
         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
         //the chart space and populate the graphs
-        //returns the geometry for each feature; this is the points at which each earthquake happened
+        //returns the geometry for each feature
         var gidResults = filter.dimension(function(d) {
             return d.geometry
         });
-        //defines the categories from magnitude property
+        //defines the categories from gender ID property
         var gidDimension = filter.dimension(function(d) {
             var gidResults = d.properties.gid;
             gidClass = "Non-Binary";
-            if (gid = Non-Binary) {
+            if (gid = 3) {
                 gid = "Female"
-            } else if ( gid = Female) {
+            } else if ( gid = 2) {
                 gid = "Male"
-            } else if (gid = Male) {
+            } else if (gid = 1) {
             }
             return gid;
         });
