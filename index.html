@@ -161,7 +161,7 @@
 
         var earthquakeCount = dc.dataCount('.dc-data-count'); //creates text depicting how many earthquakes are on screen, needs a <p> element
         earthquakeCount
-            .dimension(filter)
+            .dimension(filter) //this is erroring
             .group(all) //since we're counting how many records we have we use the 'all' variable but we could have used any variable that had the total counts
             .html({
                 some: '<strong>%filter-count</strong> selected out of <strong>%total-count</strong> records' +
