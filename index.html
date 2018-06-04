@@ -60,51 +60,81 @@
 
     //add in the .csv file .then() run the functions on that data
     d3.json('assets/emsurveypicked.geojson').then(function(data) {
-
-
         var filter = crossfilter(data.features); //passes the features to the crossfilter
         // groups everything together into one group, this is used to quickly search all of the data at once
         var all = filter.groupAll();
         //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
         // the data into an easily searchable/manipulable format for DC
-        var everything = filter.dimension(function(d) {
+        var everything = filter.dimension(function (d) {
             return d
         });
         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
         //the chart space and populate the graphs
         //returns the geometry for each feature
-        var gidResults = filter.dimension(function(d) {
+        var gidResults = filter.dimension(function (d) {
             return d.geometry
         });
         //defines the categories from gender ID property
-        var gidDimension = filter.dimension(function(d) {
+        var gidDimension = filter.dimension(function (d) {
+
             var gidResults = d.properties.gid;
             gidClass = "Non-Binary";
             if (gid = 3) {
-                gid = "Female"
-            } else if ( gid = 2) {
-                gid = "Male"
+                gidClass = "Female"
+            } else if (gid = 2) {
+                gidClass = "Male"
             } else if (gid = 1) {
             }
-            return gid;
+            return gidClass;
         });
-        var dateDimension = filter.dimension(function(d) {
-            return d3.timeDay(new Date(d.properties.time));
+        var ageDimension = filter.dimension(function (d) {
+            var ageResults = d.properties.age;
+            ageClass = "18-24";
+            if (age = 1) {
+                ageClass = "25-34"
+            } else if (age = 2) {
+                ageClass = "35-44"
+            } else if (age = 3) {
+                ageClass = "45-54";
+            } else if (age = 4) {
+                ageClass = "55-64"
+            } else if (age = 5) {
+                ageClass = "65+"
+            } else if (age = 6) {
+            }
+            return ageClass;
+        });
+        var incomeDimension = filter.dimension(function (d) {
+            var ageResults = d.properties.income;
+            incomeClass = "$0-$24,999";
+            if (age = 1) {
+                incomeClass = "$25,000-$49,999"
+            } else if (age = 2) {
+                incomeClass = "$50,000-$74,999"
+            } else if (age = 3) {
+                incomeClass = "$75,000-$99,999";
+            } else if (age = 4) {
+                incomeClass = ">$100,000"
+            } else if (age = 5) {
+                incomeClass = "Don't Know"
+            } else if (age = 6) {
+            }
+            return incomeClass;
         });
         /////////////////////////////////////////GROUP THE DATA///////////////////////////////////////////////////////////////
         // Now that we have the mag dimension captured in an object we have to group them all together so that we can use them
-        var magDimensionGroup = magDimension.group();
-        var depthDimensionGroup = depthDimension.group();
-        var dateDimensionGroup = dateDimension.group(); //
+        var gidDimensionGroup = gidDimension.group();
+        var ageDimensionGroup = ageDimension.group();
+        var incomeDimensionGroup = incomeDimension.group(); //
         ///////////////////////////////////////////////ADD THE MARKERS TO THE MAP///////////////////////////////////////////////
         var geoJsonLayer = L.geoJson({
             type: 'FeatureCollection',
-            features: geomDimension.top(Infinity) //starts selecting from the .top() and goes until...infinity
+            features: gidDimension.top(Infinity) //starts selecting from the .top() and goes until...infinity
         }, {
-            pointToLayer: function(feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
-                    radius: Math.pow(feature.properties.mag, 2) / 2,
+                    radius: Math.pow(feature.properties.gid, 2) / 2,
                     fillColor: "steelblue",
                     color: "#fff",
                     weight: 1,
@@ -113,61 +143,22 @@
                     fillOpacity: 0.1
                 })
             },
-            onEachFeature: function(feature, layer) {
-                layer.bindTooltip(feature.properties.mag.toString());
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.gid.toString());
             }
         }).addTo(map);
         /////////////////////////////////////CREATE THE CHARTS////////////////////////////////////////////////////////////////
         //binds the barChart  to the <div> elements that we created earlier in the <body>
-        var magChart = dc.barChart('#mag-chart');
-        //define the characteristics of the chart before we actually add the data to it
-        magChart
-            .height(100) //pixel height of the chart
-            .margins({
-                top: 10,
-                right: 50,
-                bottom: 30,
-                left: 40
-            }) //margins of the chart
-            .dimension(magDimension) //pulls in the mag data
-            .group(magDimensionGroup) //is the functions of the data; created earlier
-            .elasticY(true) //allows for an OTF adjustable y axis
-            .x(d3.scaleOrdinal()) //Do this because there are ORDERs of MAGNITUDE; Its the scale that we want in the chart
-            .xUnits(dc.units.ordinal)
-            .yAxis() //pulls in data from the dataset
-            .ticks(3); //number of ticks in a chart
-        var depthChart = dc.barChart('#depth-chart');
-        depthChart
-            .height(100)
-            .margins({
-                top: 10,
-                right: 50,
-                bottom: 30,
-                left: 40
-            })
-            .dimension(depthDimension)
-            .group(depthDimensionGroup)
+        var gidChart = dc.pieChart('#gid-chart');
+        gidChart
+            .height(480)
+            .width(768)
+            .innerRadius(100)
+            .dimension(gidDimension)
+            .group(gidDimensionGroup)
             .elasticY(true)
-            .x(d3.scaleOrdinal())
-            .xUnits(dc.units.ordinal)
-            .yAxis()
-            .ticks(3);
-        var dateChart = dc.lineChart('#date-chart');
-        dateChart
-            .renderArea(true) //area or lines
-            .height(150)
-            .transitionDuration(1000) //how long it takes to transition
-            .margins({
-                top: 30,
-                right: 50,
-                bottom: 25,
-                left: 40
-            })
-            .dimension(dateDimension)
-            .group(dateDimensionGroup)
-            .elasticY(true)
-            .x(d3.scaleTime().domain([new Date(2016, 7, 15), new Date(2016, 8, 1)])) //
-            .xUnits(d3.timeDays); //timeDate object that has the format for the date
+    })
+
         var earthquakeCount = dc.dataCount('.dc-data-count'); //creates text depicting how many earthquakes are on screen, needs a <p> element
         earthquakeCount
             .dimension(filter)
@@ -185,7 +176,7 @@
         //This function sees which features are in the bounding box and returns the points that are in it; This filters the
         //data for the charts and map.
         function updateCharts() {
-            geomDimension.filter(function(d) {
+            gidDimension.filter(function(d) {
                 return map.getBounds().contains(L.geoJSON(d).getBounds())
             });
             dc.redrawAll();
@@ -211,7 +202,6 @@
         dateChart.on('filtered', function(chart, filter) {
             updateMap()
         });
-    })
 </script>
 </body>
 </html>
