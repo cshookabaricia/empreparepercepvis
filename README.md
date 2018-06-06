@@ -2,6 +2,18 @@
 
 ### Visualizing Emergency Preparedness and Perceptions Across the US
 
+> ## Lab 5 Deliverables:
+>
+>This visualization is of common demographic information that respondents had answered when taking the Geography of Disaster Management Class Survey during September-October 2017. The purpose of the survey was to gather data regarding feelings of preparedness within students families, and extended social networks.
+>
+>Patterns linked with demographic information were:
+>
+> * A correlation between younger age groups answering 'Don't Know' or in answering in lower income categories.
+>
+> * A majority of responses came from female respondents versus male or non-binary gender identities.
+>
+>
+
 ## Interface Sketch
 
 Beginning sketch of main page and subsequent coordinated multi-view pages, each with main question and demographic data to overlay on top of map. Includes notes on color scheme, possible icons, and thoughts on quantifying responses.
