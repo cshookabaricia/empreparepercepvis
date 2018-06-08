@@ -12,13 +12,8 @@
 
 ##### Icons:
 
-* Perception: 
-
-  <img src="assets/flaticoncollection/svgicons/006-perception.svg" alt="Perception Icon" width="80" height="80">
-
-  Icon made by Eucalyp from www.flaticon.com
+* Perception: Icon made by [Eucalyp](https://www.flaticon.com/authors/eucalyp) from www.flaticon.com
 
   
 ##### Basemap:
 * https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png
-
