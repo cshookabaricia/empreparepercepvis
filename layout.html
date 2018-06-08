@@ -12,17 +12,17 @@
 
 
 		.info-panel {
-			line-height: 16px;
-			width: 180px;
-			position: absolute;
+			/*line-height: 16px;*/
+			/*width: 180px;*/
+			/*position: absolute;*/
 			z-index: 1000;
-			left: 10px;
-			bottom: 10px;
-			color: #070707;
-			padding: 6px 8px;
-			background: rgba(243, 243, 243, 0.73);
-			box-shadow: 0 0 15px rgba(0,0,0,0.2);
-			border-radius: 5px;
+			/*left: 10px;*/
+			/*bottom: 10px;*/
+			/*color: #070707;*/
+			/*padding: 6px 8px;*/
+			/*background: rgba(243, 243, 243, 0.73);*/
+			/*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/
+			/*border-radius: 5px;*/
 		}
 
 
@@ -78,6 +78,40 @@
 			width: 100%;
 			margin: 0 auto;
 		}
+
+
+		@media (min-width: 768px) {
+
+			.sidebar {
+				position: fixed;
+				left: 5%;
+				right: 5%;
+				bottom: 0;
+				cursor: pointer;
+				z-index:1000;
+				color: rgba(0, 0, 0, 0.87);
+				background-color: rgb(255, 255, 255);
+				border-radius: 5px;
+				text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+				border-color: rgba(0,0,0,0);
+			}
+
+		}
+
+		@media (min-width: 0px) and (max-width: 767px) {
+
+			.sidebar {
+				bottom: 0;
+				cursor: pointer;
+				z-index:1000;
+				color: rgba(0, 0, 0, 0.87);
+				background-color: rgb(255, 255, 255);
+				border-radius: 5px;
+				text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+				border-color: rgba(0,0,0,0);
+			}
+		}
+
 	</style>
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
@@ -137,26 +171,65 @@
 	</div>
 </nav>
 <!--map container-->
-<div id="map" class="map"></div>
+
 <!--info panel-->
-<div class="info-panel">
-	<h4> Map Title </h4>
-	<p><b> Subtitle of the map </b></p><br/>
-	<!-- legend patch items -->
-	<p class = "dc-data-count">Number of Respondents</p>
-	<h3>Demographics</h3>
-	<h4>Gender Identity</h4>
-	<div id="gid-chart"></div>
-	<h4>Age Range</h4>
-	<div id="age-chart"></div>
-	<h4>Income</h4>
-	<div id="income-chart"></div>
-	<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla   </p>
-	<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla  </p>
-	<p> bla bla bla bla bla bla bla bla bla  </p>
+<!--<div class="d-flex flex-row">-->
+<!--<div class="container-fluid">-->
+<!--<div class="row">-->
+	<!--<div class="col align-self-center">-->
+			<!--<h4> Map Title </h4>-->
+			<!--<p><b> Subtitle of the map </b></p><br/>-->
+			<!--&lt;!&ndash; legend patch items &ndash;&gt;-->
+			<!--&lt;!&ndash;<p class = "dc-data-count">Number of Respondents</p>&ndash;&gt;-->
+			<!--&lt;!&ndash;<h3>Demographics</h3>&ndash;&gt;-->
+			<!--&lt;!&ndash;<h4>Gender Identity</h4>&ndash;&gt;-->
+			<!--&lt;!&ndash;<div id="gid-chart"></div>&ndash;&gt;-->
+			<!--&lt;!&ndash;<h4>Age Range</h4>&ndash;&gt;-->
+			<!--&lt;!&ndash;<div id="age-chart"></div>&ndash;&gt;-->
+			<!--&lt;!&ndash;<h4>Income</h4>&ndash;&gt;-->
+			<!--&lt;!&ndash;<div id="income-chart"></div>&ndash;&gt;-->
+			<!--<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla   </p>-->
+			<!--<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla  </p>-->
+			<!--<p> bla bla bla bla bla bla bla bla bla  </p>-->
+
+	<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="container-fluid">
+
+	<div class="panel panel-primary sidebar">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col col-md-2">
+					<h4>Gender</h4>
+					<div id="gid-chart"></div>
+
+				</div>
+				<div class="col col-md-2 text-center">
+					<h4>Gender</h4>
+					<div id="age-chart"></div>
+				</div>
+				<div class="col col-md-2 text-center">
+					<h4>Incom</h4>
+
+					<div id="income-chart"></div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
 
 </div>
 
+
+<!--</div>-->
+<div id="map" class="map"></div>
 
 <script type="text/javascript">
 

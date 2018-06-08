@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html></html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Web Mapping Template</title>
     <!--<link rel="icon" href="img/favicon.png">-->
-    <link rel="icon" type="image/x-icon" href="favicon.ico" >
+    <link rel="icon"  href="img/favicon2.png" >
+    <!--<link rel="shortcut icon" href="img/new-logo.png">-->
 	<!--<link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -43,6 +44,38 @@
             line-height: 16px;
             margin: 0;
         }
+
+        @media (min-width: 1200px) {
+
+            .sidebar {
+                position: fixed;
+                left: 5%;
+                right: 5%;
+                bottom: 0;
+                cursor: pointer;
+                z-index:1000;
+                color: rgba(0, 0, 0, 0.87);
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+                border-color: rgba(0,0,0,0);
+            }
+
+        }
+
+        @media (min-width: 0px) and (max-width: 767px) {
+
+            .sidebar {
+                bottom: 0;
+                cursor: pointer;
+                z-index:1000;
+                color: rgba(0, 0, 0, 0.87);
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+                border-color: rgba(0,0,0,0);
+            }
+        }
     </style>
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -80,6 +113,10 @@
             width: 100%;
             margin: 0 auto;
         }
+        .chart {
+            margin-left:10px;
+            margin-right:10px;
+        }
     </style>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -96,7 +133,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <a class="navbar-brand" href="#">
         <!--convert the style value to a class and then add the class to the css file.-->
-        <img src="img/perception.png" class="d-inline-block align-top">
+        <img src="img/logo.png" width="30px" class="d-inline-block align-top">
     </a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -133,13 +170,48 @@
 </nav>
 
 <p class = "dc-data-count">Number of Respondents</p>
-<h3>Demographics</h3>
-<h4>Gender Identity</h4>
-<div id="gid-chart"></div>
-<h4>Age Range</h4>
-<div id="age-chart"></div>
-<h4>Income</h4>
-<div id="income-chart"></div>
+<!--<h3>Demographics</h3>-->
+<!--<h4>Gender Identity</h4>-->
+<!--<div id="gid-chart"></div>-->
+<!--<h4>Age Range</h4>-->
+<!--<div id="age-chart"></div>-->
+<!--<h4>Income</h4>-->
+<!--<div id="income-chart"></div>-->
+
+
+
+
+<div class="container-fluid">
+
+    <div class="panel panel-primary sidebar">
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col col-md-6 text-center">
+                    <h4>Income</h4>
+
+                    <div id="income-chart"></div>
+                </div>
+                <div class="col col-md-2 chart">
+                    <h4>Gender</h4>
+                    <div id="gid-chart"></div>
+                </div>
+                <div class="col col-md-3 text-center">
+                    <h4>Gender</h4>
+                    <div id="age-chart"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
 <div id="map"></div>
 <script>
 
@@ -255,28 +327,30 @@
             .dimension(gidDimension)
             .group(gidDimensionGroup);
 
-        var incomeChart = dc.barChart('#income-chart');
-        incomeChart
-            .width(668)
-            .height(380)
-            .x(d3.scaleBand())
-            .xUnits(dc.units.ordinal)
-            .brushOn(false)
-            .xAxisLabel('Gross Annual Income')
-            .yAxisLabel('Number of Respondents')
-            .dimension(incomeDimension)
-            .barPadding(0.1)
-            .outerPadding(0.05)
-            .group(incomeDimensionGroup);
 
         var ageChart = dc.rowChart('#age-chart');
         ageChart
-            .width(668)
-            .height(380)
+            .width(340)
+            .height(200)
             .x(d3.scaleBand())
             .elasticX(true)
             .dimension(ageDimension)
-            .group(ageDimensionGroup)
+            .group(ageDimensionGroup);
+
+
+	    var incomeChart = dc.barChart('#income-chart');
+	    incomeChart
+		    .width(600)
+		    .height(200)
+		    .x(d3.scaleBand())
+		    .xUnits(dc.units.ordinal)
+		    .brushOn(false)
+		    .xAxisLabel('Gross Annual Income')
+		    .yAxisLabel('Number of Respondents')
+		    .dimension(incomeDimension)
+		    .barPadding(0.1)
+		    .outerPadding(0.05)
+		    .group(incomeDimensionGroup);
 
         var Count = dc.dataCount('.dc-data-count');
         Count
