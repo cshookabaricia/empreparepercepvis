@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Web Mapping Template</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff; }
+
+
+		.info-panel {
+			line-height: 16px;
+			width: 180px;
+			position: absolute;
+			z-index: 1000;
+			left: 10px;
+			bottom: 10px;
+			color: #070707;
+			padding: 6px 8px;
+			background: rgba(243, 243, 243, 0.73);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+
+
+		.info-panel i {
+			width: 16px;
+			height: 14px;
+			line-height: 18px;
+			float: left;
+			margin-top: 2px;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+
+		.info-panel p {
+			font-size: 12px;
+			line-height: 16px;
+			margin: 0;
+		}
+	</style>
+	<!--add required stylesheets-->
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+	<!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">-->
+	<link rel="stylesheet" href="https://dc-js.github.io/dc.js/css/dc.min.css">
+	<style>
+		/*html, body, #map {*/
+			/*width: 100%;*/
+			/*height: 100%;*/
+			/*margin: 0;*/
+			/*background: #fff;*/
+		/*}*/
+		#income-chart {
+			width: 100%;
+			margin: 0 auto;
+		}
+		#gid-chart {
+			width: 100%;
+			margin: 0 auto;
+		}
+		#prepared-chart {
+			width: 100%;
+			margin: 0 auto;
+		}
+		#participated-chart {
+			width: 100%;
+			margin: 0 auto;
+		}
+		.dc-data-count {
+			width: 100%;
+			margin: 0 auto;
+		}
+	</style>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+	<!--<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>-->
+
+</head>
+<body>
+<!--add a Bootstrap navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<!--<div class="container-fluid">-->
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<a class="navbar-brand" href="#">
+		<!--convert the style value to a class and then add the class to the css file.-->
+		<img src="img/logo-long.png"  width="80%" class="d-inline-block align-top">
+	</a>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse">
+		<!--Create class ml-auto for the navbar items you want on the right.-->
+		<ul class="navbar-nav ml-auto" >
+			<!--a simple top bar link-->
+			<li class="nav-item">
+				<a class="nav-link" href="#">Topic 1</a>
+			</li>
+			<!--a top bar link which opens the url in a new page-->
+			<li class="nav-item">
+				<a class="nav-link" href="#">Topic 2</a>
+			</li>
+			<!--a drop-down menu-->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Share To...</a>
+				<div class="dropdown-menu" >
+					<!--use font awesome icons-->
+					<a class="dropdown-item" href="#"> <i class="fa fa-facebook-square"></i> Facebook</a>
+					<a class="dropdown-item" href="#"> <i class="fa fa-twitter-square"></i> Twitter</a>
+					<a class="dropdown-item" href="#"> <i class="fa fa-link"></i> Short Url </a>
+				</div>
+			</li>
+
+			<!--use icons in the top bar menu-->
+			<li>
+				<a class="nav-link" href="#"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
+			</li>
+			<!--an about page which open the url in a new page-->
+			<li>
+				<a class= "nav-link" href="template3.html" target="_self">About</a>
+			</li>
+		</ul>
+		<nav class="navbar navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</nav>
+	</div>
+</nav>
+<!--map container-->
+<div id="map" class="map"></div>
+<!--info panel-->
+<div class="info-panel">
+	<h4> Map Title </h4>
+	<p><b> Subtitle of the map </b></p><br/>
+	<!-- legend patch items -->
+	<p class = "dc-data-count">Number of Respondents</p>
+	<h3>Demographics</h3>
+	<h4>Gender Identity</h4>
+	<div id="gid-chart"></div>
+	<h4>Age Range</h4>
+	<div id="age-chart"></div>
+	<h4>Income</h4>
+	<div id="income-chart"></div>
+	<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla   </p>
+	<p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla  </p>
+	<p> bla bla bla bla bla bla bla bla bla  </p>
+
+</div>
+
+
+<script type="text/javascript">
+
+	// http://leaflet-extras.github.io/leaflet-providers/preview/
+	var map = L.map('map', {
+		zoomControl: false,
+		scrollWheelZoom: true
+	}).setView([50, -68], 3);
+	// L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY3Nob29rYWJhcmljaWEiLCJhIjoiY2pnb2Z1NW1zMDBsdTMzbnZ0Z2dyOTdoMiJ9.MKx_N6iKPgbIuQyWx2qJ3g').addTo(map);
+
+	L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+		subdomains: 'abcd',
+		maxZoom: 19
+	}).addTo(map);
+
+
+	//add in the .csv file .then() run the functions on that data
+	d3.json('assets/emsurveypicked.geojson').then(function(data) {
+
+		var filter = crossfilter(data.features); //passes the features to the crossfilter
+		// groups everything together into one group, this is used to quickly search all of the data at once
+		var all = filter.groupAll();
+		//Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
+		// the data into an easily searchable/manipulable format for DC
+		var everything = filter.dimension(function (d) {
+			return d
+		});
+		//////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
+		//Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
+		//the chart space and populate the graphs
+		//returns the geometry for each feature
+		var geoDimension = filter.dimension(function (d) {
+			return d.geometry
+		});
+
+		//defines the categories from gender ID property
+		var gidDimension = filter.dimension(function (d) {
+
+			var gid = d.properties.gid;
+
+			if (gid === 3) {
+				gidClass = "Non-Binary";
+			} else if (gid === 2) {
+				gidClass = "Female";
+			} else if (gid === 1) {
+				gidClass = "Male";
+			}
+			return gidClass;
+		});
+
+		var ageDimension = filter.dimension(function (d) {
+			var age = d.properties.age;
+			ageClass = "18-24";
+			if (age === 1) {
+				ageClass = "25-34";
+			} else if (age === 2) {
+				ageClass = "35-44";
+			} else if (age === 3) {
+				ageClass = "45-54";
+			} else if (age === 4) {
+				ageClass = "55-64";
+			} else if (age === 5) {
+				ageClass = "65+";
+			} else if (age === 6) {
+			}
+			return ageClass;
+		});
+		var incomeDimension = filter.dimension(function (d) {
+			var income = d.properties.income;
+			incomeClass = "";
+			if (income === 1) {
+				incomeClass = "$0-$24,999";
+			} else if (income === 2) {
+				incomeClass = "$25,000-$49,999"
+
+			} else if (income === 3) {
+				incomeClass = "$50,000-$74,999"
+
+			} else if (income === 4) {
+				incomeClass = "$75,000-$99,999";
+			} else if (income === 5) {
+				incomeClass = "$75,000-$99,999";
+			} else if (income === 6) {
+				incomeClass = "Don't Know";
+			}
+			return incomeClass;
+		});
+		/////////////////////////////////////////GROUP THE DATA///////////////////////////////////////////////////////////////
+		// Now that we have the mag dimension captured in an object we have to group them all together so that we can use them
+		var gidDimensionGroup = gidDimension.group();
+		var ageDimensionGroup = ageDimension.group();
+		var incomeDimensionGroup = incomeDimension.group(); //
+		///////////////////////////////////////////////ADD THE MARKERS TO THE MAP///////////////////////////////////////////////
+		var geoJsonLayer = L.geoJson({
+			type: 'FeatureCollection',
+			features: geoDimension.top(Infinity) //starts selecting from the .top() and goes until...infinity
+		}, {
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, {
+					radius: Math.pow(feature.properties.gid, 2) / 2,
+					fillColor: "steelblue",
+					color: "#fff",
+					weight: 1,
+					stroke: false,
+					opacity: 0.9,
+					fillOpacity: 0.9
+				})
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindTooltip(feature.properties.gid.toString());
+			}
+		}).addTo(map);
+
+		/////////////////////////////////////CREATE THE CHARTS////////////////////////////////////////////////////////////////
+		//binds the barChart  to the <div> elements that we created earlier in the <body>
+		// gidChart = dc.pieChart('#gid-chart');
+		var gidChart = dc.pieChart('#gid-chart');
+		gidChart
+			.height(200)
+			.width(200)
+			.slicesCap(4)
+			.innerRadius(10)
+			.dimension(gidDimension)
+			.group(gidDimensionGroup);
+
+		var incomeChart = dc.pieChart('#income-chart');
+		incomeChart
+			.height(200)
+			.width(200)
+			.slicesCap(4)
+			.innerRadius(10)
+			.dimension(incomeDimension)
+			.group(incomeDimensionGroup);
+
+
+		var Count = dc.dataCount('.dc-data-count'); //creates text depicting how many earthquakes are on screen, needs a <p> element
+		Count
+			.dimension(filter) //this is erroring
+			.group(all) //since we're counting how many records we have we use the 'all' variable but we could have used any variable that had the total counts
+			.html({
+				some: '<strong>%filter-count</strong> selected out of <strong>%total-count</strong> records' +
+				' | <a href=\'javascript:dc.filterAll(); dc.renderAll();\'>Reset All</a>',
+				all: 'All records selected. Please click on the graph or change the map view to apply filters.'
+			});
+		/////////////////////////////////////////DRAW ALL THE CHARTS//////////////////////////////////////////////////////////
+		dc.renderAll(); //activates everything
+		//we can render things one at a time but it is more efficent (and easier) to render everything at the end
+		////////////////////////////////////////LISTEN FOR CHANGES ON THE MAP//////////////////////////////////////////////////
+		//define in functions what we want to have happen to the map
+		//This function sees which features are in the bounding box and returns the points that are in it; This filters the
+		//data for the charts and map.
+
+
+		function updateCharts() {
+			geoDimension.filter(function(d) {
+				return map.getBounds().contains(L.geoJSON(d).getBounds())
+			});
+			dc.redrawAll();
+		}
+		function updateMap() {
+			geoJsonLayer.clearLayers(); //removes everything
+			geoJsonLayer.addData({ //adds the new data to the map/chart within the scope of the filter
+				type: 'FeatureCollection',
+				features: everything.top(Infinity)
+			});
+		}
+		//selects the map and runs a filter function on it once it's done moving and zooming
+		map.on('zoomend moveend', function() { //passes the zoom and move locations as the new filter
+			updateCharts(); //triggers the new function
+		});
+		//When the chart is "filtered" it runs the function to update the map
+
+		gidChart.on('filtered', function(chart, filter) {
+			updateMap() //calls the update map function
+		});
+
+		incomeChart.on('filtered', function(chart, filter) {
+			updateMap()
+		});
+		// ageChart.on('filtered', function(chart, filter) {
+		//     updateMap()
+		// });
+
+
+
+
+
+	});
+
+
+</script>
+</body>
+</html>
