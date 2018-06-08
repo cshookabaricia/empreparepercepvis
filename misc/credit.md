@@ -10,9 +10,7 @@
 * https://dc-js.github.io/dc.js/js/dc.js
 * https://unpkg.com/leaflet@1.3.1/dist/leaflet.js
 
-
-
-#### ##### Icons:
+##### Icons:
 
 * Perception: 
 
@@ -21,8 +19,6 @@
   Icon made by Eucalyp from www.flaticon.com
 
   
-
-  ##### Basemap:
-
-   https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png
+##### Basemap:
+* https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png
 
