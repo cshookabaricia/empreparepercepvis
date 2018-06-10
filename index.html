@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Web Mapping Template</title>
-    <!--<link rel="icon" href="img/favicon.png">-->
+    <title>Final Project</title>
     <link rel="icon"  href="img/favicon.ico" >
-    <!--<link rel="shortcut icon" href="img/new-logo.png">-->
-	<!--<link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff; }
+        html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
 
 
         .info-panel {
@@ -21,7 +18,8 @@
             z-index: 1000;
             left: 10px;
             bottom: 10px;
-            color: #070707;
+            color: #ff7100;
+            /*color: #0f130d;*/
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -70,7 +68,8 @@
                 cursor: pointer;
                 z-index:1000;
                 color: rgba(0, 0, 0, 0.87);
-                background-color: rgb(255, 255, 255);
+                background-color: rgb(#eeeeee);
+                /*background-color: rgb(255, 255, 255);*/
                 border-radius: 5px;
                 text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
                 border-color: rgba(0,0,0,0);
@@ -141,7 +140,22 @@
         <!--Create class ml-auto for the navbar items you want on the right.-->
         <ul class="navbar-nav ml-auto" >
 
-            <!--a drop-down menu-->
+            <!--use icons in the top bar menu-->
+            <li>
+                <a class= "nav-link" href="index.html" target="_self">Home</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="about.html" target="_self">About</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="datainfo.html" target="_self">Data Information</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="index.html" target="_self">Respondent Map</a>
+            </li>
+            <li>
+                <a class="nav-link" href="https://github.com/cshookabaricia/empreparepercepvis"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Share To...</a>
                 <div class="dropdown-menu" >
@@ -150,15 +164,6 @@
                     <a class="dropdown-item" href="#"> <i class="fa fa-twitter-square"></i> Twitter</a>
                     <a class="dropdown-item" href="#"> <i class="fa fa-link"></i> Short Url </a>
                 </div>
-            </li>
-
-            <!--use icons in the top bar menu-->
-            <li>
-                <a class="nav-link" href="https://github.com/cshookabaricia/empreparepercepvis"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
-            </li>
-            <!--an about page which open the url in a new page-->
-            <li>
-                <a class= "nav-link" href="https://github.com/cshookabaricia/empreparepercepvis/blob/master/misc/credit.md" target="_self">Sources</a>
             </li>
         </ul>
         <nav class="navbar navbar-dark bg-dark">
@@ -178,9 +183,6 @@
 <!--<h4>Income</h4>-->
 <!--<div id="income-chart"></div>-->
 
-
-
-
 <div class="container-fluid">
 
     <div class="panel panel-primary sidebar">
@@ -188,27 +190,29 @@
             <div class="row">
 
                 <div class="col col-md-6 text-center">
-                    <h4>Income</h4>
-
+                    <h4>Annual Income</h4>
                     <div id="income-chart"></div>
                 </div>
-                <div class="col col-md-2 chart">
+                <div class="col col-md-2 chart text-center">
                     <h4>Gender</h4>
                     <div id="gid-chart"></div>
                 </div>
                 <div class="col col-md-3 text-center">
-                    <h4>Gender</h4>
+                    <h4>Age</h4>
                     <div id="age-chart"></div>
                 </div>
-
+                <div class="col col-md-3 text-center">
+                    <h4>Do respondents feel prepared?</h4>
+                    <div id="prepared-chart"></div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    <h4>Respondent Participation in Class/Program</h4>
+                    <div id="participated-chart"></div>
+                </div>
 
             </div>
-
         </div>
-
-
     </div>
-
 </div>
 
 
@@ -227,7 +231,7 @@
     }).addTo(map);
 
 
-    d3.json('assets/emsurveypicked.geojson').then(function(data) {
+    d3.json('assets/data.geojson').then(function(data) {
 
         var filter = crossfilter(data.features);
         var all = filter.groupAll();
@@ -235,24 +239,11 @@
         var everything = filter.dimension(function (d) {
             return d
         });
+
         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
 
         var geoDimension = filter.dimension(function (d) {
             return d.geometry
-        });
-
-        var gidDimension = filter.dimension(function (d) {
-
-            var gid = d.properties.gid;
-
-            if (gid === 3) {
-                gidClass = "Non-Binary";
-            } else if (gid === 2) {
-                gidClass = "Female";
-            } else if (gid === 1) {
-                gidClass = "Male";
-            }
-            return gidClass;
         });
 
         var ageDimension = filter.dimension(function (d) {
@@ -267,33 +258,77 @@
             } else if (age === 4) {
                 ageClass = "55-64";
             } else if (age === 5) {
-                ageClass = "65 and over";
+                ageClass = "65+";
             } else if (age === 6) {
             }
             return ageClass;
         });
+
+        var gidDimension = filter.dimension(function (d) {
+            var gid = d.properties.gid;
+            if (gid === 1) {
+                gidClass = "Male";
+            } else if (gid === 2) {
+                gidClass = "Female";
+            } else if (gid === 3) {
+                gidClass = "Non-Binary";
+            }
+            return gidClass;
+        });
+
         var incomeDimension = filter.dimension(function (d) {
             var income = d.properties.income;
-            incomeClass = "$0-$24,999";
+            incomeClass = "0-25K";
             if (income === 1) {
-                incomeClass = "$25,000-$49,999";
+                incomeClass = "25-50K";
             } else if (income === 2) {
-                incomeClass = "$50,000-$74,999"
+                incomeClass = "50-75K"
             } else if (income === 3) {
-                incomeClass = "$75,000-$99,999"
+                incomeClass = "75-100K"
             } else if (income === 4) {
-                incomeClass = ">$100,000";
+                incomeClass = ">100K";
             } else if (income === 5) {
                 incomeClass = "Don't Know";
             } else if (income === 6) {
             }
             return incomeClass;
         });
+
+        var preparedDimension = filter.dimension(function (d) {
+            var prepared = d.properties.prepared;
+            preparedClass = "Yes";
+            if (prepared === 1) {
+                preparedClass = "No";
+            } else if (prepared === 2) {
+                preparedClass = "I don't Know";
+            } else if (prepared === 3) {
+                preparedClass = "No Answer";
+            } else if (prepared === 4){
+            }
+            return preparedClass;
+        });
+
+        var participatedDimension = filter.dimension(function (d) {
+            var participated = d.properties.participated;
+            participatedClass = "Yes";
+            if (participated === 1) {
+                participatedClass = "No";
+            } else if (participated === 2) {
+                participatedClass = "I don't know";
+            } else if (participated === 3) {
+                participatedClass = "Other";
+            } else if (participated === 4) {
+            }
+            return participatedClass;
+        });
+
         /////////////////////////////////////////GROUP THE DATA///////////////////////////////////////////////////////////////
 
         var gidDimensionGroup = gidDimension.group();
         var ageDimensionGroup = ageDimension.group();
         var incomeDimensionGroup = incomeDimension.group();
+        var preparedDimensionGroup = preparedDimension.group();
+        var participatedDimensionGroup = participatedDimension.group();
 
         ///////////////////////////////////////////////ADD THE MARKERS TO THE MAP///////////////////////////////////////////////
         var geoJsonLayer = L.geoJson({
@@ -303,7 +338,7 @@
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: Math.pow(feature.properties.gid, 2) / 2,
-                    fillColor: "steelblue",
+                    fillColor: "orange",
                     color: "#fff",
                     weight: 1,
                     stroke: false,
@@ -345,12 +380,34 @@
 		    .x(d3.scaleBand())
 		    .xUnits(dc.units.ordinal)
 		    .brushOn(false)
-		    .xAxisLabel('Gross Annual Income')
-		    .yAxisLabel('Number of Respondents')
 		    .dimension(incomeDimension)
 		    .barPadding(0.1)
 		    .outerPadding(0.05)
 		    .group(incomeDimensionGroup);
+
+	    var preparedChart = dc.barChart('#prepared-chart');
+	    preparedChart
+            .width(300)
+            .height(200)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .dimension(preparedDimension)
+            .barPadding(0.1)
+            .outerPadding(0.05)
+            .group(preparedDimensionGroup);
+
+        var participatedChart = dc.barChart('#participated-chart');
+        participatedChart
+            .width(300)
+            .height(200)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .dimension(participatedDimension)
+            .barPadding(0.1)
+            .outerPadding(0.05)
+            .group(participatedDimensionGroup);
 
         var Count = dc.dataCount('.dc-data-count');
         Count
@@ -361,6 +418,7 @@
                 ' | <a href=\'javascript:dc.filterAll(); dc.renderAll();\'>Reset All</a>',
                 all: 'All records selected. Please click on the graph or change the map view to apply filters.'
             });
+
 
         /////////////////////////////////////////DRAW ALL THE CHARTS//////////////////////////////////////////////////////////
 
@@ -392,9 +450,16 @@
         });
 
         ageChart.on('filtered', function(chart, filter) {
-            updateMap()
+        updateMap()
         });
 
+        preparedChart.on('filtered', function(chart, filter) {
+        updateMap()
+        });
+
+        participatedChart.on('filtered', function(chart, filter) {
+        updateMap()
+        });
 
     });
 
