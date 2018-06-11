@@ -79,11 +79,11 @@ p{
     right: 0;
     z-index: 1000;
     display : block;
-    /*padding: 20px;*/
+    padding: 20px;
     overflow-x: hidden;
     overflow-y: hidden;
     width: 100%;
-    background: url(img/japanearthquake.jpg) no-repeat center center fixed;
+    background: url("img/cooling-tower-taken.jpg") no-repeat center center fixed;
 }
 
 .background-fullscreen-setting {
