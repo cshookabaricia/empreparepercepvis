@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/modern-business.css" rel="stylesheet">
     <style>
-        html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
+        /*html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }*/
 
 
         .info-panel {
@@ -44,7 +44,12 @@
             line-height: 16px;
             margin: 0;
         }
+        body{
+            background-color: #be3030;
+        }
     </style>
+
+
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -115,19 +120,19 @@
         <div class="col-md-12">
             <br>
             <br>
-            <img class="img-responsive" src="img/cooling-tower-taken.jpg" alt="">
+            <img class="img-thumbnail" src="img/cooling-tower-taken.jpg" alt="">
             <br>
             <br>
             <br>
 
         </div>
-        <div class="col-md-6">
-            <h2 class="page-header" >About This Project</h2>
-            <p><small>The goal for this project was to visualize a portion of the Emergency Preparedness Survey results from
-                Professer Shireen Hyrapiet's 2016 and 2017 Geography of Disaster Management course. </small></p>
+        <div class="col-md-12">
+            <h2 class="page-header">About This Project</h2>
+            <p>The goal for this project was to visualize a portion of the Emergency Preparedness Survey results from
+                Professer Shireen Hyrapiet's 2016 and 2017 Geography of Disaster Management course.</p>
             <br>
-            <p><small>The survey was created by Professor Hyrapiet, and students disbursed the survey throuhout their social networks using social media, direct links,
-             and email lists of their friends and family.</small> </p>
+            <p>The survey was created by Professor Hyrapiet, and students disbursed the survey throuhout their social networks using social media, direct links,
+             and email lists of their friends and family.</p>
             <br>
         </div>
     </div>
@@ -136,67 +141,70 @@
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">The Map</h2>
+        <p>The displayed maps show responses from reported zip codes. Demographic data such as Age, Gender, Annual Income, and Zip Code were recorded.
+            Zoom in on location on the map to view the respondents survey response information for that area.</p>
+        <br>
+        <p>Responses to the survey were filtered to show only demographic information, whether or not a emergency preparedness class (through school, community centers, or by some other means)
+        has ever been completed, and the respondents feelings of preparedness if a natural disaster were to occur in close proximity. Future plans include visualizing the remainder of responses to more disaster-based questions.</p>
+        <br>
+        <br>
+            <img src="img/graphpics.png" alt="" class="img-custom">
+        <br><br>
         </div>
-        <p><small>The displayed maps show responses from reported zip codes. Demographic data such as Age, Gender, Annual Income, and Zip Code were recorded.
-            Zoom in on location on the map to view the respondents survey response information for that area.</small></p>
-        <br>
-        <p><small>Responses to the survey were filtered to show only demographic information, whether or not a emergency preparedness class (through school, community centers, or by some other means)
-        has ever been completed, and the respondents feelings of preparedness if a natural disaster were to occur in close proximity. Future plans include visualizing the remainder of responses to more disaster-based questions.</small></p>
-        <br>
-        <br>
-        <img class="img-responsive" src="img/graphpics.png" alt=""><br><br>
     </div>
 
     <!-- Methods -->
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Methodology</h2>
-        </div>
-        <p><small>This project was created in order to provide a visualization of student sruvey data, and to provide an easier means of looking   <br>
+        <p>This project was created in order to provide a visualization of student sruvey data, and to provide an easier means of looking   <br>
             The data was geocoded using zip code responses from survey respondents into a csv file, and then converted to a geoJson format.<br>
             In order to collect the geographical data, the latitude and longitude coordinates were collected for each zip code response. The responses were converted
             to numerical values for easier coding reference. Visualization was done using d3 chart templates with the addition of data filters using survey data responses. The
-            filtering allows users to view the data with ease through desktop browsers.</small></p><br><br>
-    </div>
+            filtering allows users to view the data with ease through desktop browsers.</p><br><br>
+        </div></div>
+
 
     <!--Advisor-->
-    <div class="col-lg-6">
-            <h2 class="page-header">Advisors</h2>
-        </div>
-        <div class="col-md-5 text-center">
+    <div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Advisors</h2>
+        <div class="col-md-12 text-center">
             <div class="thumbnail">
                 <div class="caption">
                     <h3>Bo Zhao<br>
                         <small>Professor at Oregon State University</small>
                     </h3>
-                    <p><small> Bo specializes in Cartography and geovisual analytics, and has mentored me in writing code and debugging it
-                        throughout the course of this project. </small></p>
+                    <p>Bo specializes in Cartography and geovisual analytics, and has mentored me in writing code and debugging it
+                        throughout the course of this project.</p>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
 
     <!--Author-->
-        <div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-12">
             <h2 class="page-header">Team</h2>
-        </div>
-        <div class="col-md-5 text-center">
+        <div class="col-md-12 text-center">
             <div class="thumbnail">
                 <div class="caption">
                     <h3>Christine Shook-Abaricia<br>
                         <small>Student</small>
                     </h3>
-                    <p> <small>Senior in the College of Earth, Ocean, and Atmospheric Sciences majoring in Geography and Geospatial Science.
+                    <p>Senior in the College of Earth, Ocean, and Atmospheric Sciences majoring in Geography and Geospatial Science.
                         I attended class with Professor Shireen Hyrapiet regarding disaster management, where the topic of mitigation strategies peaked my interest.
-                        I hoped to begin visualizing the data collected through that class into a useful and interesting resource for future students.</small></p>
+                        I hoped to begin visualizing the data collected through that class into a useful and interesting resource for future students.</p>
                 </div>
             </div>
         </div>
-
+        </div>
+    </div>
     <!-- Acknowledgements -->
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Acknowledgements</h2>
-        </div>
         <p>
         <ul>
             <li>Jared Ritchey, TA GEOG 472/572 and Masters Student </li>
@@ -204,15 +212,19 @@
             <li>Classmates of GEOG 472/572 for their critique and support throughout the term.</li>
         </ul>
             </p>
+        </div>
+    </div>
+
 
     <!-- Credits -->
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Credits</h2>
-        </div>
+
         <p> This project utilized the following libraries: colorbrewer.js, Bootstrap, Leaflet, D3, Crossfilter,DC, jqCloud, and Cloudflare.
 
         </p>
+        </div>
     </div>
 
     <!-- Collaborators -->

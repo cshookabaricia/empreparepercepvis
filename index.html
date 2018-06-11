@@ -100,7 +100,7 @@
 </nav>
 
 <!-- Header Carousel -->
-<header id="myCarousel" class="carousel slide">
+<header id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -110,20 +110,17 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="fill" style="background-image:url('img/japanearthquake.jpg');"></div>
-            <div class="carousel-caption" style-color="red">
+        <div class="carousel-item active" style="background-image: url('img/japanearthquake.jpg');">
+            <div class="carousel-caption">
                 <h2>Japan Earthquake Response by Hikaru Kazushime</h2>
             </div>
         </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('img/uscoast.jpg');"></div>
+        <div class="carousel-item" style="background-image:url('img/uscoast.jpg');">
             <div class="carousel-caption">
                 <h2>U.S. Coast Guard Disaster Assistance Response Team personnel from Louisville, Ky., and Huntington</h2>
             </div>
         </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('img/wildfire.jpg');"></div>
+        <div class="carousel-item" style="background-image:url('img/wildfire.jpg');">
             <div class="carousel-caption">
                 <h2>2017 Eagle Creek Fire by U.S. Forest Service</h2>
             </div>
@@ -211,13 +208,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
-<!-- Script to Activate the Carousel -->
-<script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-</script>
 
 </body>
 </html>
