@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--<link href="css/modern-business.css" rel="stylesheet">-->
     <style>
-        html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
+        html, body, #map { width: 100%; height: 100%; margin: 2px; background: #fff; }
 
         .info-panel {
             line-height: 16px;
-            width:100%;
+            /*width:100%;*/
             position: absolute;
             z-index: 1000;
+            right: 20px;
+            left: 20px;
             bottom: 10px;
-            margin-left: auto;
-            margin-right: auto;
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
             color: #000000;
             /*color: #0f130d;*/
             padding: 6px 8px;
@@ -164,11 +166,11 @@
                     <h4>Respondent Participation in Class/Program</h4>
                     <div id="participated-chart" class="object-center"></div>
                 </div>
-                <div class="col col-md-2 text-center">
+                <div class="col col-md-3 text-center">
                 <h4>Age</h4>
                 <div id="age-chart" class="object-center"></div>
             </div>
-                <div class="col col-md-3 text-center">
+                <div class="col col-md-1 text-center">
                 <h4>Gender</h4>
                 <div id="gid-chart" class="object-center"></div>
             </div>
@@ -186,7 +188,11 @@
     var map = L.map('map', {
         zoomControl: false,
         scrollWheelZoom: true
-    }).setView([50, -68], 3);
+    }).fitBounds([
+	    [49.3, -138.5],
+	    [22.8, -67.4]
+    ]);
+    // setView([50, -68], 3);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
