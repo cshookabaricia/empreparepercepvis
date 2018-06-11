@@ -1,0 +1,134 @@
+/*!
+ * Start Bootstrap - Modern Business (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/* Charts */
+
+/*html, body, #map {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*margin: 0;*/
+/*background: #fff;*/
+/*}*/
+
+#income-chart {
+    width: 100%;
+    margin: 0 auto;
+}
+#gid-chart {
+    width: 100%;
+    margin: 0 auto;
+}
+#prepared-chart {
+    width: 100%;
+    margin: 0 auto;
+}
+#participated-chart {
+    width: 100%;
+    margin: 0 auto;
+}
+.dc-data-count {
+    width: 100%;
+    margin: 0 auto;
+}
+.chart {
+    margin-left:10px;
+    margin-right:10px;
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+    height: 70%;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+/* About Page */
+
+.error-404 {
+    font-size: 100px;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+/* Data Information Page */
+
+.price {
+    display: block;
+    font-size: 50px;
+    line-height: 50px;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+.price sup {
+    top: -20px;
+    left: 2px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+.period {
+    display: block;
+    font-style: italic;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+/* Footer Styles */
+
+footer {
+    margin: 50px 0;
+    font-family: 'Open Sans', sans-serif;;
+}
+
+
+/*Respond to Media Viewing Type*/
+
+@media (min-width: 1200px) {
+
+    .sidebar {
+        position: fixed;
+        left: 5%;
+        right: 5%;
+        bottom: 0;
+        cursor: pointer;
+        z-index:1000;
+        color: rgba(0, 0, 0, 0.87);
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+        border-color: rgba(0,0,0,0);
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+
+    .sidebar {
+        bottom: 0;
+        cursor: pointer;
+        z-index:1000;
+        color: rgba(0, 0, 0, 0.87);
+        background-color: rgb(#eeeeee);
+        /*background-color: rgb(255, 255, 255);*/
+        border-radius: 5px;
+        text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+        border-color: rgba(0,0,0,0);
+        margin-top: 3px
+    }
+}

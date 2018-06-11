@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Final Project</title>
+    <link rel="icon"  href="img/favicon.ico" >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/modern-business.css" rel="stylesheet">
+    <style>
+        html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
+
+
+        .info-panel {
+            line-height: 16px;
+            width: 180px;
+            position: absolute;
+            z-index: 1000;
+            left: 10px;
+            bottom: 10px;
+            color: #ff7100;
+            /*color: #0f130d;*/
+            padding: 6px 8px;
+            background: rgba(243, 243, 243, 0.73);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+
+        .info-panel i {
+            width: 16px;
+            height: 14px;
+            line-height: 18px;
+            float: left;
+            margin-top: 3px;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        .info-panel p {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0;
+        }
+    </style>
+    <!--add required stylesheets-->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">-->
+    <link rel="stylesheet" href="https://dc-js.github.io/dc.js/css/dc.min.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+    <!--<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>-->
+
+</head>
+<body>
+<!--add a Bootstrap navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <a class="navbar-brand" href="#">
+        <!--convert the style value to a class and then add the class to the css file.-->
+        <img src="img/logo.png" width="30px" class="d-inline-block align-top">
+    </a>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+        <!--Create class ml-auto for the navbar items you want on the right.-->
+        <ul class="navbar-nav ml-auto" >
+
+            <!--use icons in the top bar menu-->
+            <li>
+                <a class= "nav-link" href="index.html" target="_self">Home</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="about.html" target="_self">About</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="datainfo.html" target="_self">Data Information</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="map.html" target="_self">Respondent Map</a>
+            </li>
+            <li>
+                <a class="nav-link" href="https://github.com/cshookabaricia/empreparepercepvis"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Share To...</a>
+                <div class="dropdown-menu" >
+                    <!--use font awesome icons-->
+                    <a class="dropdown-item" href="#"> <i class="fa fa-facebook-square"></i> Facebook</a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-twitter-square"></i> Twitter</a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-link"></i> Short Url </a>
+                </div>
+            </li>
+        </ul>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+</nav>
+
+<p class = "dc-data-count">Number of Respondents</p>
+
+<div class="container-fluid">
+
+    <div class="panel panel-primary sidebar">
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col col-md-6 text-center">
+                    <h4>Annual Income</h4>
+                    <div id="income-chart"></div>
+                </div>
+                <div class="col col-md-2 chart text-center">
+                    <h4>Gender</h4>
+                    <div id="gid-chart"></div>
+                </div>
+                <div class="col col-md-3 text-center">
+                    <h4>Age</h4>
+                    <div id="age-chart"></div>
+                </div>
+                <div class="col col-md-3 text-center">
+                    <h4>Do respondents feel prepared?</h4>
+                    <div id="prepared-chart"></div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    <h4>Respondent Participation in Class/Program</h4>
+                    <div id="participated-chart"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="map"></div>
+<script>
+
+    var map = L.map('map', {
+        zoomControl: false,
+        scrollWheelZoom: true
+    }).setView([50, -68], 3);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+
+    d3.json('assets/data.geojson').then(function(data) {
+
+        var filter = crossfilter(data.features);
+        var all = filter.groupAll();
+
+        var everything = filter.dimension(function (d) {
+            return d
+        });
+
+        //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
+
+        var geoDimension = filter.dimension(function (d) {
+            return d.geometry
+        });
+
+        var ageDimension = filter.dimension(function (d) {
+            var age = d.properties.age;
+            ageClass = "18-24";
+            if (age === 1) {
+                ageClass = "25-34";
+            } else if (age === 2) {
+                ageClass = "35-44";
+            } else if (age === 3) {
+                ageClass = "45-54";
+            } else if (age === 4) {
+                ageClass = "55-64";
+            } else if (age === 5) {
+                ageClass = "65+";
+            } else if (age === 6) {
+            }
+            return ageClass;
+        });
+
+        var gidDimension = filter.dimension(function (d) {
+            var gid = d.properties.gid;
+            if (gid === 1) {
+                gidClass = "Male";
+            } else if (gid === 2) {
+                gidClass = "Female";
+            } else if (gid === 3) {
+                gidClass = "Non-Binary";
+            }
+            return gidClass;
+        });
+
+        var incomeDimension = filter.dimension(function (d) {
+            var income = d.properties.income;
+            incomeClass = "0-25K";
+            if (income === 1) {
+                incomeClass = "25-50K";
+            } else if (income === 2) {
+                incomeClass = "50-75K"
+            } else if (income === 3) {
+                incomeClass = "75-100K"
+            } else if (income === 4) {
+                incomeClass = ">100K";
+            } else if (income === 5) {
+                incomeClass = "Don't Know";
+            } else if (income === 6) {
+            }
+            return incomeClass;
+        });
+
+        var preparedDimension = filter.dimension(function (d) {
+            var prepared = d.properties.prepared;
+            preparedClass = "Yes";
+            if (prepared === 1) {
+                preparedClass = "No";
+            } else if (prepared === 2) {
+                preparedClass = "I don't Know";
+            } else if (prepared === 3) {
+                preparedClass = "No Answer";
+            } else if (prepared === 4){
+            }
+            return preparedClass;
+        });
+
+        var participatedDimension = filter.dimension(function (d) {
+            var participated = d.properties.participated;
+            participatedClass = "Yes";
+            if (participated === 1) {
+                participatedClass = "No";
+            } else if (participated === 2) {
+                participatedClass = "I don't know";
+            } else if (participated === 3) {
+                participatedClass = "Other";
+            } else if (participated === 4) {
+            }
+            return participatedClass;
+        });
+
+        /////////////////////////////////////////GROUP THE DATA///////////////////////////////////////////////////////////////
+
+        var gidDimensionGroup = gidDimension.group();
+        var ageDimensionGroup = ageDimension.group();
+        var incomeDimensionGroup = incomeDimension.group();
+        var preparedDimensionGroup = preparedDimension.group();
+        var participatedDimensionGroup = participatedDimension.group();
+
+        ///////////////////////////////////////////////ADD THE MARKERS TO THE MAP///////////////////////////////////////////////
+        var geoJsonLayer = L.geoJson({
+            type: 'FeatureCollection',
+            features: geoDimension.top(Infinity)
+        }, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: Math.pow(feature.properties.gid, 2) / 2,
+                    fillColor: "orange",
+                    color: "#fff",
+                    weight: 1,
+                    stroke: false,
+                    opacity: 0.9,
+                    fillOpacity: 0.9
+                })
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.gid.toString());
+            }
+        }).addTo(map);
+
+        /////////////////////////////////////CREATE THE CHARTS////////////////////////////////////////////////////////////////
+
+        var gidChart = dc.pieChart('#gid-chart');
+        gidChart
+            .height(200)
+            .width(200)
+            .slicesCap(4)
+            .innerRadius(10)
+            .dimension(gidDimension)
+            .group(gidDimensionGroup);
+
+
+        var ageChart = dc.rowChart('#age-chart');
+        ageChart
+            .width(340)
+            .height(200)
+            .x(d3.scaleBand())
+            .elasticX(true)
+            .dimension(ageDimension)
+            .group(ageDimensionGroup);
+
+
+	    var incomeChart = dc.barChart('#income-chart');
+	    incomeChart
+		    .width(600)
+		    .height(200)
+		    .x(d3.scaleBand())
+		    .xUnits(dc.units.ordinal)
+		    .brushOn(false)
+		    .dimension(incomeDimension)
+		    .barPadding(0.1)
+		    .outerPadding(0.05)
+		    .group(incomeDimensionGroup);
+
+	    var preparedChart = dc.barChart('#prepared-chart');
+	    preparedChart
+            .width(300)
+            .height(200)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .dimension(preparedDimension)
+            .barPadding(0.1)
+            .outerPadding(0.05)
+            .group(preparedDimensionGroup);
+
+        var participatedChart = dc.barChart('#participated-chart');
+        participatedChart
+            .width(300)
+            .height(200)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .dimension(participatedDimension)
+            .barPadding(0.1)
+            .outerPadding(0.05)
+            .group(participatedDimensionGroup);
+
+        var Count = dc.dataCount('.dc-data-count');
+        Count
+            .dimension(filter)
+            .group(all)
+            .html({
+                some: '<strong>%filter-count</strong> selected out of <strong>%total-count</strong> records' +
+                ' | <a href=\'javascript:dc.filterAll(); dc.renderAll();\'>Reset All</a>',
+                all: 'All records selected. Please click on the graph or change the map view to apply filters.'
+            });
+
+
+        /////////////////////////////////////////DRAW ALL THE CHARTS//////////////////////////////////////////////////////////
+
+        dc.renderAll();
+
+        function updateCharts() {
+            geoDimension.filter(function(d) {
+                return map.getBounds().contains(L.geoJSON(d).getBounds())
+            });
+            dc.redrawAll();
+        }
+        function updateMap() {
+            geoJsonLayer.clearLayers();
+            geoJsonLayer.addData({
+                type: 'FeatureCollection',
+                features: everything.top(Infinity)
+            });
+        }
+        map.on('zoomend moveend', function() {
+            updateCharts();
+        });
+
+        gidChart.on('filtered', function(chart, filter) {
+            updateMap() //calls the update map function
+        });
+
+        incomeChart.on('filtered', function(chart, filter) {
+            updateMap()
+        });
+
+        ageChart.on('filtered', function(chart, filter) {
+        updateMap()
+        });
+
+        preparedChart.on('filtered', function(chart, filter) {
+        updateMap()
+        });
+
+        participatedChart.on('filtered', function(chart, filter) {
+        updateMap()
+        });
+
+    });
+
+</script>
+</body>
+</html>
