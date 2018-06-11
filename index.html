@@ -76,7 +76,7 @@
                 <a class= "nav-link" href="datainfo.html" target="_self">Data Information</a>
             </li>
             <li>
-                <a class= "nav-link" href="map.html" target="_self">Respondent Map</a>
+                <a class= "nav-link" href="demographics.html.html" target="_self">Respondent Map</a>
             </li>
             <li>
                 <a class="nav-link" href="https://github.com/cshookabaricia/empreparepercepvis"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
@@ -99,144 +99,110 @@
     </div>
 </nav>
 
-<!--Content in Page-->
+<!-- Header Carousel -->
+<header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('img/japanearthquake.png');"></div>
+            <div class="carousel-caption">
+                <h2>Japan Earthquake Response by Hikaru Kazushime</h2>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('img/uscoast.jpg');"></div>
+            <div class="carousel-caption">
+                <h2>U.S. Coast Guard Disaster Assistance Response Team personnel from Louisville, Ky., and Huntington</h2>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('img/wildfire.jpg');"></div>
+            <div class="carousel-caption">
+                <h2>2017 Eagle Creek Fire by U.S. Forest Service</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</header>
+
+<!-- Page Content -->
 <div class="container">
 
-    <!-- Page Heading -->
+    <!-- Marketing Icons Section -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header"></h1>
-        </div>
-    </div>
-
-
-    <!-- Intro -->
-    <div class="row">
-        <div class="col-md-6">
+            <h1 class="page-header">
+                Emergency and Natural Disaster Perceptions and Preparedness
+            </h1>
+            <p>The purpose of this data visualization project is to provide students with another means to view their collected
+                survey data, visualize the results, and be able to formulate research questions for their own projects. This data can
+                also be used to view the feelings of preparedness, perceptions of disasters and management, and demographic information of
+                respondents within a users location of interest.</p>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <img class="img-responsive" src="img/cooling-tower-taken.jpg.jpg" alt="">
             <br>
         </div>
-        <div class="col-md-6">
-            <h2 class="page-header" >About This Project</h2>
-            <p><small>The goal for this project was to visualize a portion of the Emergency Preparedness Survey results from
-                Professer Shireen Hyrapiet's 2016 and 2017 Geography of Disaster Management course. </small></p>
-            <br>
-            <br>
-            <p><small>The survey was created by Professor Hyrapiet, and students disbursed the survey throuhout their social networks using social media, direct links,
-             and email lists of their friends and family.</small> </p>
-            <br>
-        </div>
-    </div>
-
-    <!-- Map Info -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">The Map</h2>
-        </div>
-        <p><small>The displayed maps show responses from reported zip codes. Demographic data such as Age, Gender, Annual Income, and Zip Code were recorded.
-            Zoom in on location on the map to view the respondents survey response information for that area.</small></p>
-        <br>
-        <p><small>Responses to the survey were filtered to show only demographic information, whether or not a emergency preparedness class (through school, community centers, or by some other means)
-        has ever been completed, and the respondents feelings of preparedness if a natural disaster were to occur in close proximity. Future plans include visualizing the remainder of responses to more disaster-based questions.</small></p>
-        <br>
-        <br>
-        <img class="img-responsive" src="img/tutoral.jpg" alt="">
-    </div>
-    <!-- Methods -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Methodology</h2>
-        </div>
-        <p><small>This project was created in order to provide a visualization of student sruvey data, and to provide an easier means of looking   <br>
-            The data was geocoded using zip code responses from survey respondents into a csv file, and then converted to a geoJson format.<br>
-            In order to collect the geographical data, the latitude and longitude coordinates were collected for each zip code response. The responses were converted
-            to numerical values for easier coding reference. Visualization was done using d3 chart templates with the addition of data filters using survey data responses. The
-            filtering allows users to view the data with ease through desktop browsers.</small></p>
-    </div>
-
-    <!-- Cred/Acknowledgement/Author -->
-        <div class="col-lg-12">
-            <h2 class="page-header">Advisors</h2>
-        </div>
-        <div class="col-md-4 text-center">
-            <div class="thumbnail">
-                <div class="caption">
-                    <h2>Bo Zhao<br>
-                        <small>Professor at Oregon State University</small>
-                    </h2>
-                    <p><small> Bo specializes in Cartography and geovisual analytics, and has mentored me in writing code and debugging it
-                        throughout the course of this project. </small></p>
-                    <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                        </li>
-                    </ul>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-check"></i> Demographics and Preparedness Map
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <p>Curious about the who and the where? You can view this map to see the demographics of the survey
+                        respondents, as well as their answer to two of the questions on the survey.</p>
+                    <a href="demographics.html" class="btn btn-default">View</a>
                 </div>
             </div>
         </div>
-
-    <!-- Acknowledgements -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Acknowledgements</h2>
-        </div>
-        <p>
-        <ul>
-            <li>Jared Ritchey, TA GEOG 472/572 and Masters Student </li>
-            <li>Shireen Hyrapiet, Professor | Oregon State University Geography Department</li>
-            <li>Classmates of GEOG 472/572 for their critique and support throughout the term.</li>
-        </ul>
-            </p>
-
-    <!--Author-->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Team</h2>
-            </div>
-            <div class="col-md-6 text-center">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>Christine Shook-Abaricia<br>
-                            <small>Student</small>
-                        </h3>
-                        <p> <small>Senior in the College of Earth, Ocean, and Atmospheric Sciences majoring in Geography and Geospatial Science.
-                            I attended class with Professor Shireen Hyrapiet regarding disaster management, where the topic of mitigation strategies peaked my interest.
-                            I hoped to begin visualizing the data collected through that class into a useful and interesting resource for future students.</small></p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-gift"></i> Dreams Map
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <p>What do you want Benton County to be like between now & 2040? View this map to see keywords which shows
+                        what the community wants their future to look like between now and 2040.</p>
+                    <a href="dreams.html" class="btn btn-default">View</a>
                 </div>
             </div>
-
-    </div>
-    <!-- Credits -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Credits</h2>
         </div>
-        <p> This project utilized the following libraries: colorbrewer.js, Bootstrap, Leaflet, D3, Crossfilter,DC, jqCloud, and Cloudflare.
-
-        </p>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-compass"></i> Initiative Map
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <p>What needs to happen to achieve your vision? View this map to see keywords which shows
+                        what the community see as the steps necessary to achieve their vision. </p>
+                    <a href="initiative.html" class="btn btn-default">View</a>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- /.row -->
+
 
     <!-- Collaborators -->
 
     <div class="col-lg-12">
-        <h2 class="page-header">Supporting Organizations</h2>
+        <h2 class="page-header">Collaborators</h2>
     </div>
     <div class="row">
 
@@ -250,12 +216,36 @@
             <img class="img-responsive customer-img" style="vertical-align:middle; height:100px" src="img/osu_vertical1.png" alt="">
         </div>
 
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <img class="img-responsive customer-img" style="vertical-align:middle; height:100px" src="img/benton-logo.png" alt="">
+        </div>
 
     </div>
 
-    <hr>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Benton County TCI 2017</p>
+            </div>
+        </div>
+    </footer>
 
 </div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
 
 </body>
 </html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta charset="utf-8">
+    <title>Final Project</title>
+    <link rel="icon"  href="img/favicon.ico" >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/modern-business.css" rel="stylesheet">
+    <style>
+        html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
+
+
+        .info-panel {
+            line-height: 16px;
+            width: 180px;
+            position: absolute;
+            z-index: 1000;
+            left: 10px;
+            bottom: 10px;
+            color: #ff7100;
+            /*color: #0f130d;*/
+            padding: 6px 8px;
+            background: rgba(243, 243, 243, 0.73);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+
+        .info-panel i {
+            width: 16px;
+            height: 14px;
+            line-height: 18px;
+            float: left;
+            margin-top: 3px;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        .info-panel p {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0;
+        }
+    </style>
+    <!--add required stylesheets-->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">-->
+    <link rel="stylesheet" href="https://dc-js.github.io/dc.js/css/dc.min.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+    <script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+    <!--<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>-->
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="img/logo.png" width="30px" class="d-inline-block align-top">
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto" >
+            <li>
+                <a class= "nav-link" href="index.html" target="_self">Home</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="about.html" target="_self">About</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="datainfo.html" target="_self">Data Information</a>
+            </li>
+            <li>
+                <a class= "nav-link" href="demographics.html" target="_self">Respondent Map</a>
+            </li>
+            <li>
+                <a class="nav-link" href="https://github.com/cshookabaricia/empreparepercepvis"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Share To...</a>
+                <div class="dropdown-menu" >
+                    <!--use font awesome icons-->
+                    <a class="dropdown-item" href="#"> <i class="fa fa-facebook-square"></i> Facebook</a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-twitter-square"></i> Twitter</a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-link"></i> Short Url </a>
+                </div>
+            </li>
+        </ul>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+</nav>
+
+<!--Content in Page-->
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"></h1>
+        </div>
+    </div>
+
+
+    <!-- Intro -->
+    <div class="row">
+        <div class="col-md-6">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <img class="img-responsive" src="img/cooling-tower-taken.jpg.jpg" alt="">
+            <br>
+        </div>
+        <div class="col-md-6">
+            <h2 class="page-header" >About This Project</h2>
+            <p><small>The goal for this project was to visualize a portion of the Emergency Preparedness Survey results from
+                Professer Shireen Hyrapiet's 2016 and 2017 Geography of Disaster Management course. </small></p>
+            <br>
+            <br>
+            <p><small>The survey was created by Professor Hyrapiet, and students disbursed the survey throuhout their social networks using social media, direct links,
+             and email lists of their friends and family.</small> </p>
+            <br>
+        </div>
+    </div>
+
+    <!-- Map Info -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">The Map</h2>
+        </div>
+        <p><small>The displayed maps show responses from reported zip codes. Demographic data such as Age, Gender, Annual Income, and Zip Code were recorded.
+            Zoom in on location on the map to view the respondents survey response information for that area.</small></p>
+        <br>
+        <p><small>Responses to the survey were filtered to show only demographic information, whether or not a emergency preparedness class (through school, community centers, or by some other means)
+        has ever been completed, and the respondents feelings of preparedness if a natural disaster were to occur in close proximity. Future plans include visualizing the remainder of responses to more disaster-based questions.</small></p>
+        <br>
+        <br>
+        <img class="img-responsive" src="img/.jpg" alt="">
+    </div>
+    <!-- Methods -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Methodology</h2>
+        </div>
+        <p><small>This project was created in order to provide a visualization of student sruvey data, and to provide an easier means of looking   <br>
+            The data was geocoded using zip code responses from survey respondents into a csv file, and then converted to a geoJson format.<br>
+            In order to collect the geographical data, the latitude and longitude coordinates were collected for each zip code response. The responses were converted
+            to numerical values for easier coding reference. Visualization was done using d3 chart templates with the addition of data filters using survey data responses. The
+            filtering allows users to view the data with ease through desktop browsers.</small></p>
+    </div>
+
+    <!-- Cred/Acknowledgement/Author -->
+        <div class="col-lg-12">
+            <h2 class="page-header">Advisors</h2>
+        </div>
+        <div class="col-md-5 text-center">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2>Bo Zhao<br>
+                        <small>Professor at Oregon State University</small>
+                    </h2>
+                    <p><small> Bo specializes in Cartography and geovisual analytics, and has mentored me in writing code and debugging it
+                        throughout the course of this project. </small></p>
+                    <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <!-- Acknowledgements -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Acknowledgements</h2>
+        </div>
+        <p>
+        <ul>
+            <li>Jared Ritchey, TA GEOG 472/572 and Masters Student </li>
+            <li>Shireen Hyrapiet, Professor | Oregon State University Geography Department</li>
+            <li>Classmates of GEOG 472/572 for their critique and support throughout the term.</li>
+        </ul>
+            </p>
+
+    <!--Author-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Team</h2>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>Christine Shook-Abaricia<br>
+                            <small>Student</small>
+                        </h3>
+                        <p> <small>Senior in the College of Earth, Ocean, and Atmospheric Sciences majoring in Geography and Geospatial Science.
+                            I attended class with Professor Shireen Hyrapiet regarding disaster management, where the topic of mitigation strategies peaked my interest.
+                            I hoped to begin visualizing the data collected through that class into a useful and interesting resource for future students.</small></p>
+                        <ul class="list-inline">
+                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <!-- Credits -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Credits</h2>
+        </div>
+        <p> This project utilized the following libraries: colorbrewer.js, Bootstrap, Leaflet, D3, Crossfilter,DC, jqCloud, and Cloudflare.
+
+        </p>
+    </div>
+
+    <!-- Collaborators -->
+
+    <div class="col-lg-12">
+        <h2 class="page-header">Supporting Organizations</h2>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <img class="img-responsive customer-img" style="vertical-align:middle; height:100px" src="img/grouplogo.png" alt="">
+
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <img class="img-responsive customer-img" style="vertical-align:middle; height:100px" src="img/osu_vertical.png" alt="">
+        </div>
+
+
+    </div>
+
+    <hr>
+
+</div>
+
+</body>
+</html>
