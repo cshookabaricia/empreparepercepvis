@@ -11,15 +11,15 @@
     <style>
         html, body, #map { width: 100%; height: 100%; margin: 2; background: #fff; }
 
-
         .info-panel {
             line-height: 16px;
-            width: 180px;
+            width:100%;
             position: absolute;
             z-index: 1000;
-            left: 10px;
             bottom: 10px;
-            color: #ff7100;
+            margin-left: auto;
+            margin-right: auto;
+            color: #000000;
             /*color: #0f130d;*/
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
@@ -41,6 +41,43 @@
             font-size: 12px;
             line-height: 16px;
             margin: 0;
+        }
+
+        .object-center{
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+        @media (min-width: 1700px) {
+
+            .info-panel {
+                position: fixed;
+                left: 5%;
+                right: 5%;
+                bottom: 0;
+                cursor: pointer;
+                z-index:1000;
+                color: rgba(0, 0, 0, 0.87);
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+                border-color: rgba(0,0,0,0);
+            }
+
+        }
+
+        @media (min-width: 0px) and (max-width: 1699px) {
+
+            .info-panel {
+                bottom: 0;
+                cursor: pointer;
+                z-index:1000;
+                color: rgba(0, 0, 0, 0.87);
+                background-color: rgb(255, 255, 255);
+                border-radius: 5px;
+                text-shadow: 0 0 1px rgba(197, 197, 197, 0.95);
+                border-color: rgba(0,0,0,0);
+            }
         }
     </style>
     <!--add required stylesheets-->
@@ -109,38 +146,41 @@
 
 <p class = "dc-data-count">Number of Respondents</p>
 <div class="container-fluid">
+    <div class="info-panel">
     <div class="panel panel-primary sidebar">
         <div class="panel-body">
             <div class="row">
 
-                <div class="col col-md-6 text-center">
+                <div class="col col-md-3 text-center">
                     <h4>Annual Income</h4>
-                    <div id="income-chart"></div>
+                    <div id="income-chart" class="object-center"></div>
                 </div>
+
                 <div class="col col-md-2 text-center">
-                    <h4>Gender</h4>
-                    <div id="gid-chart"></div>
-                </div>
-                <div class="col col-md-3 text-center">
-                    <h4>Age</h4>
-                    <div id="age-chart"></div>
-                </div>
-                <div class="col col-md-3 text-center">
                     <h4>Do respondents feel prepared?</h4>
-                    <div id="prepared-chart"></div>
+                    <div id="prepared-chart" class="object-center"></div>
                 </div>
                 <div class="col col-md-2 text-center">
                     <h4>Respondent Participation in Class/Program</h4>
-                    <div id="participated-chart"></div>
+                    <div id="participated-chart" class="object-center"></div>
                 </div>
+                <div class="col col-md-2 text-center">
+                <h4>Age</h4>
+                <div id="age-chart" class="object-center"></div>
+            </div>
+                <div class="col col-md-3 text-center">
+                <h4>Gender</h4>
+                <div id="gid-chart" class="object-center"></div>
+            </div>
 
+            </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<div id="map"></div>
+<div id="map" z-index="1"></div>
 <script>
 
     var map = L.map('map', {
@@ -299,7 +339,7 @@
 
 	    var incomeChart = dc.barChart('#income-chart');
 	    incomeChart
-		    .width(600)
+		    .width(400)
 		    .height(200)
 		    .x(d3.scaleBand())
 		    .xUnits(dc.units.ordinal)
